@@ -9,7 +9,7 @@
 <body>
     <h1>FluzeClient Header Formatting</h1>
     <div class="content">
-        <input type="text" id="input" value="Input">
+        <textarea id="input"></textarea>
         <textarea id="output"></textarea>
     </div>
     <style>
@@ -18,8 +18,16 @@
             height: 100%;
             display: flex;
             flex-direction: row;
+            row-gap: 1rem;
             justify-content: center;
             align-items: center;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100%;
+            resize: none;
+            min-height: 800px;
         }
     </style>
 </body>
