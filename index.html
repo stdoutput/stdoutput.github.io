@@ -29,7 +29,30 @@
                 let splitHeader = header.split(/\s{2,}|\t/)
                 headerStruct[splitHeader[0]] = splitHeader[1]
             });
-            output.value = JSON.stringify(headerStruct, null, 2)
+
+            Object.keys(headerStruct).forEach(key => {
+                if (key.startsWith(':')) {
+                    delete headerStruct[key]
+                }
+            })
+            
+            var out = "{\n"
+            headerStruct.forEach((value, key) => {
+                out += `${key}: {${value}},\n`
+            })
+
+            var headerOrder = "http.HeaderOrderKey: {"
+            headerStruct.forEach((value, key) => {
+                headerOrder += `"${key}",`
+            })
+            headerOrder += "},\n"
+            out += headerOrder
+
+            out += 'http.PseudoHeaderOrderKey:   {":method", ":authority", ":scheme", ":path"},\n'
+            out += "}"
+
+            output.value = out
+
         }
 
     </script>
