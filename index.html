@@ -38,7 +38,7 @@
             
             var out = "{\n"
             Object.keys(headerStruct).forEach((key) => {
-                out += `"${escape(key)}": {"${escape(headerStruct[key])}"},\n`
+                out += `"${key.replace('"', '\\"')}": {"${headerStruct[key].replace('"', '\\"')}"},\n`
             })
 
             var headerOrder = "http.HeaderOrderKey: {"
