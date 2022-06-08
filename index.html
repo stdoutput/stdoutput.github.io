@@ -37,12 +37,12 @@
             })
             
             var out = "{\n"
-            headerStruct.forEach((value, key) => {
-                out += `${key}: {${value}},\n`
+            Object.keys(headerStruct).forEach((key) => {
+                out += `${key}: {"${headerStruct[key]}"},\n`
             })
 
             var headerOrder = "http.HeaderOrderKey: {"
-            headerStruct.forEach((value, key) => {
+            Object.keys(headerStruct).forEach((key) => {
                 headerOrder += `"${key}",`
             })
             headerOrder += "},\n"
