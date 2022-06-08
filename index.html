@@ -38,13 +38,14 @@
             
             var out = "{\n"
             Object.keys(headerStruct).forEach((key) => {
-                out += `${key}: {"${headerStruct[key]}"},\n`
+                out += `"${key}": {"${headerStruct[key]}"},\n`
             })
 
             var headerOrder = "http.HeaderOrderKey: {"
             Object.keys(headerStruct).forEach((key) => {
                 headerOrder += `"${key}",`
             })
+            headerOrder = headerOrder.slice(0, -1)
             headerOrder += "},\n"
             out += headerOrder
 
