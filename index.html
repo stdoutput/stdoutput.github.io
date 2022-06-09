@@ -30,11 +30,15 @@
                 headerStruct[splitHeader[0]] = splitHeader[1]
             });
 
+            var pHeaderOrder = "http.PseudoHeaderOrderKey: {"
             Object.keys(headerStruct).forEach(key => {
                 if (key.startsWith(':')) {
+                    pHeaderOrder += `"${key}",`
                     delete headerStruct[key]
                 }
             })
+            pHeaderOrder = headerOrder.slice(0, -1)
+            pHeaderOrder += "},\n"
             
             var out = "{\n"
             Object.keys(headerStruct).forEach((key) => {
@@ -47,9 +51,9 @@
             })
             headerOrder = headerOrder.slice(0, -1)
             headerOrder += "},\n"
-            out += headerOrder
 
-            out += 'http.PseudoHeaderOrderKey:   {":method", ":authority", ":scheme", ":path"},\n'
+            out += headerOrder
+            out += pHeaderOrder
             out += "}"
 
             output.value = out
